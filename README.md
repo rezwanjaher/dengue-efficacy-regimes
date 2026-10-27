@@ -1,5 +1,7 @@
 # Efficacy Regimes in Vector-Borne Epidemic Control
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23683522.svg)](https://doi.org/10.5281/zenodo.23683522)
+
 Code, data, trained agents and results for the paper
 
 > Md Rezwan Jaher, Md Sumon Hossain and Md Ahsanul Haque.
@@ -183,7 +185,8 @@ author on request.
 ## Licence
 
 Code: MIT (`LICENSE`). Data, results and trained weights: CC BY 4.0
-(`LICENSE-data`). Please cite the paper (`CITATION.cff`).
+(`LICENSE-data`). Please cite the paper (`CITATION.cff`). The archived release
+of this repository is at https://doi.org/10.5281/zenodo.23683522.
 
 ## Contact
 
