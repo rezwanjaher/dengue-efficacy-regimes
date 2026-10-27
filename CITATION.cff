@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "Efficacy Regimes in Vector-Borne Epidemic Control: Timing, Targeting, and the Price of Information"
+authors:
+  - family-names: Jaher
+    given-names: Md Rezwan
+    orcid: "https://orcid.org/0009-0002-1692-5967"
+    affiliation: "North South University"
+  - family-names: Hossain
+    given-names: Md Sumon
+    affiliation: "North South University"
+  - family-names: Haque
+    given-names: Md Ahsanul
+    affiliation: "North South University"
+license: MIT
+repository-code: "https://github.com/rezwanjaher/dengue-efficacy-regimes"
+date-released: 2026-10-27
+version: "1.0.0"

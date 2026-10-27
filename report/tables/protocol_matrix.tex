@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+\centering\small
+\caption{Measured advantage of the learned controller over the myopic LP at the appropriated budget, under four evaluation protocols, as a fraction of untreated burden.}
+\label{tab:protocol_matrix}
+\begin{tabular}{lrr}
+\toprule
+Instance & baselines free & baselines paced \\
+\midrule
+10 wards, surveillance capped & 0.010 & 0.502 \\
+10 wards, surveillance uncapped & 0.015 & 0.955 \\
+54 wards, surveillance capped & 0.002 & 0.533 \\
+54 wards, surveillance uncapped & 0.002 & 0.995 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{0.92\textwidth}{\footnotesize Same agent, same baselines, same data. Only the rules the baselines play under differ. The matched comparison, reported in the paper, is baselines free with surveillance capped; the others show how far the measurement moves when the baseline is paced or allowed to spend everything on surveillance.}
+\end{table}

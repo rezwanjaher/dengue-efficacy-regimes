@@ -1,0 +1,14 @@
+The data, results and trained model weights in this repository (the folders
+configs/, data/, evaluation_dengue/, rl_models/ and report/) are licensed under
+the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+Copyright (c) 2026 Md Rezwan Jaher, Md Sumon Hossain, Md Ahsanul Haque
+
+You may share and adapt this material for any purpose, provided you give
+appropriate credit by citing the paper (see CITATION.cff).
+
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Ward populations are from the Population and Housing Census 2022 of the
+Bangladesh Bureau of Statistics. Ward adjacency was built from geoBoundaries
+ADM3 boundaries (https://www.geoboundaries.org), which carry their own licence.

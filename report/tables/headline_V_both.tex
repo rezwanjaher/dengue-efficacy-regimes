@@ -1,0 +1,33 @@
+\begin{table}[htbp]
+\centering\small
+\caption{Discounted objective $V$ (billions BDT, lower is better) by budget multiplier. Matched protocol (baselines free, surveillance capped).}
+\label{tab:headline_V_dncc}\label{tab:headline_V_dncc10}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Policy & $\times$1 & $\times$1.5 & $\times$2 & $\times$2.5 & $\times$3 & $\times$3.5 & $\times$4 \\
+\midrule
+\multicolumn{8}{@{}l}{\emph{$54$ wards}} \\
+Do nothing & 31.252 & 31.252 & 31.252 & 31.252 & 31.252 & 31.252 & 31.252 \\
+Blanket fogging & 0.596 & 0.811 & 1.017 & 1.103 & 1.103 & 1.103 & 1.103 \\
+Test-and-target & 0.648 & 0.783 & 0.911 & 0.929 & 0.929 & 0.929 & 0.929 \\
+Random larviciding & 9.207 & 4.198 & 3.276 & 3.338 & 3.419 & 3.419 & 3.419 \\
+Greedy (belief) & 0.910 & 0.848 & 1.024 & 1.161 & 1.200 & 1.201 & 1.201 \\
+Myopic LP (belief) & 0.664 & 0.827 & 0.963 & 0.981 & 0.981 & 0.981 & 0.981 \\
+Greedy (oracle) & 0.880 & 0.821 & 1.037 & 1.257 & 1.473 & 1.685 & 1.892 \\
+Myopic LP (oracle) & 0.453 & 0.453 & 0.453 & 0.453 & 0.453 & 0.453 & 0.453 \\
+RL agent & 0.602 & 0.808 & 1.017 & 1.164 & 1.178 & 1.180 & 1.181 \\
+\midrule
+\multicolumn{8}{@{}l}{\emph{$10$ wards}} \\
+Do nothing & 8.538 & 8.538 & 8.538 & 8.538 & 8.538 & 8.538 & 8.538 \\
+Blanket fogging & 0.207 & 0.249 & 0.290 & 0.307 & 0.307 & 0.307 & 0.307 \\
+Test-and-target & 3.070 & 0.532 & 0.278 & 0.307 & 0.325 & 0.327 & 0.327 \\
+Random larviciding & 4.125 & 2.285 & 1.837 & 1.820 & 1.836 & 1.836 & 1.836 \\
+Greedy (belief) & 0.940 & 0.280 & 0.287 & 0.327 & 0.362 & 0.375 & 0.375 \\
+Myopic LP (belief) & 0.277 & 0.257 & 0.296 & 0.316 & 0.316 & 0.316 & 0.316 \\
+Greedy (oracle) & 0.491 & 0.242 & 0.279 & 0.322 & 0.366 & 0.408 & 0.449 \\
+Myopic LP (oracle) & 0.203 & 0.218 & 0.218 & 0.218 & 0.218 & 0.218 & 0.218 \\
+RL agent & 0.196 & 0.234 & 0.272 & 0.288 & 0.294 & 0.298 & 0.301 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{0.92\textwidth}{\footnotesize Every policy faces the same budget and the same evaluation seeds. Oracle rows see the true state for free; they are references, not competitors or bounds.}
+\end{table}

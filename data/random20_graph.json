@@ -1,0 +1,171 @@
+{
+  "num_sites": 20,
+  "ward_names": [
+    "DNCC_Ward No-10",
+    "DNCC_Ward No-14",
+    "DNCC_Ward No-17",
+    "DNCC_Ward No-19",
+    "DNCC_Ward No-20",
+    "DNCC_Ward No-26",
+    "DNCC_Ward No-29",
+    "DNCC_Ward No-30",
+    "DNCC_Ward No-31",
+    "DNCC_Ward No-37",
+    "DNCC_Ward No-38",
+    "DNCC_Ward No-41",
+    "DNCC_Ward No-44",
+    "DNCC_Ward No-47",
+    "DNCC_Ward No-48",
+    "DNCC_Ward No-49",
+    "DNCC_Ward No-5",
+    "DNCC_Ward No-51",
+    "DNCC_Ward No-53",
+    "DNCC_Ward No-8"
+  ],
+  "N_initial": [
+    92961,
+    196763,
+    282699,
+    121306,
+    114745,
+    65351,
+    57416,
+    197270,
+    49049,
+    118590,
+    109542,
+    38609,
+    31861,
+    94607,
+    90211,
+    107370,
+    133707,
+    98482,
+    103614,
+    145196
+  ],
+  "neighbors": {
+    "0": [
+      7,
+      19
+    ],
+    "1": [
+      5,
+      16
+    ],
+    "2": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "3": [
+      4
+    ],
+    "4": [
+      3
+    ],
+    "5": [
+      1
+    ],
+    "6": [
+      7,
+      8
+    ],
+    "7": [
+      0,
+      6,
+      8
+    ],
+    "8": [
+      6,
+      7
+    ],
+    "9": [
+      2,
+      10,
+      11
+    ],
+    "10": [
+      2,
+      9,
+      11
+    ],
+    "11": [
+      2,
+      9,
+      10
+    ],
+    "12": [
+      2,
+      13,
+      14,
+      15
+    ],
+    "13": [
+      2,
+      12,
+      14,
+      15,
+      17
+    ],
+    "14": [
+      2,
+      12,
+      13,
+      15
+    ],
+    "15": [
+      2,
+      12,
+      13,
+      14
+    ],
+    "16": [
+      1,
+      19
+    ],
+    "17": [
+      13
+    ],
+    "18": [
+      19
+    ],
+    "19": [
+      0,
+      16,
+      18
+    ]
+  },
+  "_provenance": {
+    "population": "BBS Population & Housing Census 2022 (ward x thana crosswalk)",
+    "adjacency": "inherited from dncc_graph.json; closed-boundary subgraph",
+    "subgraph": "random20: 20-ward selection from dncc_graph.json",
+    "wards": [
+      10,
+      14,
+      17,
+      19,
+      20,
+      26,
+      29,
+      30,
+      31,
+      37,
+      38,
+      41,
+      44,
+      47,
+      48,
+      49,
+      5,
+      51,
+      53,
+      8
+    ],
+    "built_by": "t/make_instances.py"
+  }
+}

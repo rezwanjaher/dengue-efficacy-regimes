@@ -1,0 +1,341 @@
+=== EVAL REGIME ===  rho=0.2  regime=estimated  history=5  lambda_sigma=0.8
+=== SURVEY CAP  ===  share=0.25  (capped)
+=== V / AUDIT   ===  gamma=0.99  strict_budget=ON (abort on overspend)
+=== BUDGET PROTO ===  RL=free (whole season up front)  heuristics=FREE (matched)
+(episodes and checkpoint discovery both use these; match them to training)
+
+
+  NOTE: season budget resolved from archetypes.json = 480,769,236 BDT; the hardcoded value used before v2.0 was 521,000,000 (+8.4%). Results are NOT comparable to pre-v2.0 runs in absolute BDT.
+
+####################################################################################################
+# BATCH 1/1:  dncc  (54 wards)
+#   graph  = data/dncc_graph.json
+#   econ   = DNCC_Seasonal_Budget   base_budget = 480,769,236.0
+#   seeds  = 4 discovered under rl_models\test
+#            S0: DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S0_1786150456/final_model_4014k.zip
+#            S1: DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S1_1786150469/final_model_4014k.zip
+#            S2: DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S2_1786150472/final_model_4014k.zip
+#            S3: DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S3_1786150484/final_model_4014k.zip
+####################################################################################################
+
+******************************************************************************
+*  COVERAGE AXIS   kappa at x1.0 = 0.4512
+*    population 5,919,169 | fogging unit cost 9.00 BDT | horizon 20w
+*    theory: VO peaks at kappa=0.5  -> x1.108
+*    theory: VO -> 0 at kappa=1     -> x2.216
+******************************************************************************
+
+Discovered 4 seed(s): S0, S1, S2, S3
+Outbreak evaluation seeds (n=15): [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+========================================================================
+1. CONVERGENCE  (final mean peak at 2.0x budget, per seed)
+========================================================================
+  S0     final mean peak =        6,772
+  S1     final mean peak =        6,946
+  S2     final mean peak =        6,653
+  S3     final mean peak =        6,778
+
+  cross-seed mean = 6,787   std = 105   CoV = 1.5%
+  (pair with the per-seed plateau from convergence_analysis.py)
+
+====================================================================================================
+2. BUDGET SWEEP  --  mean peak infection by policy x budget
+   heuristics deterministic given seeds; RL row = mean +/- std across seeds
+   (* = controlled, peak < 5,000)
+====================================================================================================
+policy                        x1.0      x1.5      x2.0      x2.5      x3.0      x3.5      x4.0
+----------------------------------------------------------------------------------------------------
+H0_Do_Nothing             256,801   256,801   256,801   256,801   256,801   256,801   256,801 
+H1_Blanket_Fogging          8,577     7,182     7,182     7,182     7,182     7,182     7,182 
+H2_Test_and_Target          5,913     5,913     5,913     5,913     5,913     5,913     5,913 
+H3_Random_Larviciding     110,130    33,622    17,627    17,627    17,627    17,627    17,627 
+H4_Greedy_Belief           41,687     9,052     7,174     7,174     7,174     7,174     7,174 
+H4_Greedy_Oracle           45,649     7,518     6,995     6,995     6,995     6,995     6,995 
+H5_MyopicLP_Belief         34,951     7,330     7,330     7,330     7,330     7,330     7,330 
+H5_MyopicLP_Oracle          7,354     7,354     7,354     7,354     7,354     7,354     7,354 
+RL_Agent (mean)             7,175     6,787     6,787     6,787     6,787     6,787     6,787 
+RL_Agent (std)                 329       105       105       105       105       105       105
+----------------------------------------------------------------------------------------------------
+
+2a. COVERAGE AXIS  (kappa = fraction of network reachable per week at full strength)
+budget mult                     x1      x1.5        x2      x2.5        x3      x3.5        x4
+kappa                        0.451     0.677     0.902     1.000     1.000     1.000     1.000
+m = min(kappa, 1-kappa)      0.451     0.323     0.098     0.000     0.000     0.000     0.000
+   The bound is ~proportional to m, so VO should track this row and vanish
+   where m = 0. A peak elsewhere points to the rival C_V-near-criticality story.
+
+2b. CUMULATIVE DISCOUNTED ECONOMIC COST  V = sum_t g^t (cost + delta*new_inf)
+    gamma = 0.99   (billions BDT; lower is better)
+policy                        x1.0      x1.5      x2.0      x2.5      x3.0      x3.5      x4.0
+----------------------------------------------------------------------------------------------------
+H0_Do_Nothing               31.252    31.252    31.252    31.252    31.252    31.252    31.252
+H1_Blanket_Fogging           1.163     1.043     1.242     1.328     1.328     1.328     1.328
+H2_Test_and_Target           0.605     0.786     0.870     0.872     0.872     0.872     0.872
+H3_Random_Larviciding        9.207     4.198     3.276     3.338     3.419     3.419     3.419
+H4_Greedy_Belief             2.878     1.269     1.197     1.359     1.498     1.575     1.584
+H4_Greedy_Oracle             3.122     1.141     1.170     1.372     1.587     1.798     2.006
+H5_MyopicLP_Belief           2.638     1.197     1.277     1.433     1.487     1.487     1.487
+H5_MyopicLP_Oracle           0.877     0.943     0.959     0.959     0.959     0.959     0.959
+RL_Agent                     0.964     0.972     1.175     1.358     1.425     1.421     1.419
+----------------------------------------------------------------------------------------------------
+
+2b-CI. V WITH 95% BOOTSTRAP CI  (billions BDT; n = eval seeds x train seeds)
+policy                                x1.0              x1.5              x2.0              x2.5              x3.0              x3.5              x4.0
+------------------------------------------------------------------------------------------------------------------------------------------------------
+H0_Do_Nothing              31.25[26.37,35.76]   31.25[26.37,35.76]   31.25[26.37,35.76]   31.25[26.37,35.76]   31.25[26.37,35.76]   31.25[26.37,35.76]   31.25[26.37,35.76]
+H1_Blanket_Fogging          1.16[0.97,1.36]    1.04[0.95,1.14]    1.24[1.15,1.34]    1.33[1.24,1.42]    1.33[1.24,1.42]    1.33[1.24,1.42]    1.33[1.24,1.42]
+H2_Test_and_Target          0.61[0.57,0.64]    0.79[0.74,0.83]    0.87[0.80,0.94]    0.87[0.80,0.94]    0.87[0.80,0.94]    0.87[0.80,0.94]    0.87[0.80,0.94]
+H3_Random_Larviciding       9.21[6.97,11.55]    4.20[3.28,5.17]    3.28[2.63,3.93]    3.34[2.73,3.96]    3.42[2.81,4.05]    3.42[2.81,4.05]    3.42[2.81,4.05]
+H4_Greedy_Belief            2.88[1.91,3.89]    1.27[1.07,1.49]    1.20[1.11,1.29]    1.36[1.25,1.45]    1.50[1.36,1.62]    1.57[1.40,1.73]    1.58[1.41,1.75]
+H4_Greedy_Oracle            3.12[2.26,4.04]    1.14[1.01,1.29]    1.17[1.11,1.23]    1.37[1.32,1.43]    1.59[1.53,1.64]    1.80[1.74,1.85]    2.01[1.95,2.06]
+H5_MyopicLP_Belief          2.64[1.79,3.54]    1.20[1.04,1.36]    1.28[1.16,1.39]    1.43[1.29,1.57]    1.49[1.32,1.64]    1.49[1.32,1.65]    1.49[1.32,1.65]
+H5_MyopicLP_Oracle          0.88[0.72,1.03]    0.94[0.78,1.10]    0.96[0.79,1.12]    0.96[0.79,1.12]    0.96[0.79,1.12]    0.96[0.79,1.12]    0.96[0.79,1.12]
+RL_Agent                    0.96[0.88,1.05]    0.97[0.94,1.01]    1.18[1.14,1.21]    1.36[1.32,1.40]    1.42[1.38,1.47]    1.42[1.38,1.47]    1.42[1.37,1.47]
+------------------------------------------------------------------------------------------------------------------------------------------------------
+   Overlapping intervals between two policies at the same budget mean the
+   ranking at that budget is NOT supported by this sample.
+
+2d. MEASURED MEAN COVERAGE PER CHANNEL  (fraction of network per week)
+  -- vector_control --
+policy                          x1      x1.5        x2      x2.5        x3      x3.5        x4
+H0_Do_Nothing                0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H1_Blanket_Fogging           0.450     0.667     0.901     1.000     1.000     1.000     1.000
+H2_Test_and_Target           0.129     0.126     0.124     0.124     0.124     0.124     0.124
+H3_Random_Larviciding        0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H4_Greedy_Belief             0.138     0.209     0.273     0.321     0.347     0.353     0.353
+H4_Greedy_Oracle             0.203     0.305     0.406     0.507     0.608     0.709     0.809
+H5_MyopicLP_Belief           0.248     0.375     0.487     0.564     0.576     0.576     0.576
+H5_MyopicLP_Oracle           0.431     0.573     0.590     0.590     0.590     0.590     0.590
+RL_Agent                     0.300     0.438     0.559     0.667     0.731     0.759     0.780
+  -- case_management --
+policy                          x1      x1.5        x2      x2.5        x3      x3.5        x4
+H0_Do_Nothing                0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H1_Blanket_Fogging           0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H2_Test_and_Target           0.130     0.126     0.124     0.124     0.124     0.124     0.124
+H3_Random_Larviciding        0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H4_Greedy_Belief             0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H4_Greedy_Oracle             0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H5_MyopicLP_Belief           0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H5_MyopicLP_Oracle           0.000     0.000     0.000     0.000     0.000     0.000     0.000
+RL_Agent                     0.190     0.225     0.235     0.233     0.232     0.231     0.231
+  -- larviciding --
+policy                          x1      x1.5        x2      x2.5        x3      x3.5        x4
+H0_Do_Nothing                0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H1_Blanket_Fogging           0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H2_Test_and_Target           0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H3_Random_Larviciding        0.369     0.554     0.739     0.924     1.000     1.000     1.000
+H4_Greedy_Belief             0.137     0.209     0.273     0.320     0.346     0.353     0.353
+H4_Greedy_Oracle             0.203     0.304     0.406     0.507     0.608     0.708     0.809
+H5_MyopicLP_Belief           0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H5_MyopicLP_Oracle           0.000     0.000     0.000     0.000     0.000     0.000     0.000
+RL_Agent                     0.028     0.063     0.107     0.148     0.144     0.118     0.098
+
+  A channel pinned at 1.000 is saturated and cannot absorb more budget;
+  one well below 1.000 at high budget is where the spare money is going.
+
+2e. SPEND SHARE BY CHANNEL + SURVEYED FRACTION
+  H0_Do_Nothing
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+fog$        0.000    0.000    0.000    0.000    0.000    0.000    0.000
+casemgt$    0.000    0.000    0.000    0.000    0.000    0.000    0.000
+larv$       0.000    0.000    0.000    0.000    0.000    0.000    0.000
+surveyd     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+  H1_Blanket_Fogging
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+fog$        1.000    1.000    1.000    1.000    1.000    1.000    1.000
+casemgt$    0.000    0.000    0.000    0.000    0.000    0.000    0.000
+larv$       0.000    0.000    0.000    0.000    0.000    0.000    0.000
+surveyd     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+  H2_Test_and_Target
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.560    0.700    0.745    0.746    0.746    0.746    0.746
+fog$        0.284    0.194    0.164    0.164    0.164    0.164    0.164
+casemgt$    0.156    0.106    0.091    0.090    0.090    0.090    0.090
+larv$       0.000    0.000    0.000    0.000    0.000    0.000    0.000
+surveyd     0.418    0.786    0.994    1.000    1.000    1.000    1.000
+  H3_Random_Larviciding
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+fog$        0.000    0.000    0.000    0.000    0.000    0.000    0.000
+casemgt$    0.000    0.000    0.000    0.000    0.000    0.000    0.000
+larv$       1.000    1.000    1.000    1.000    1.000    1.000    1.000
+surveyd     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+  H4_Greedy_Belief
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.498    0.488    0.499    0.536    0.579    0.613    0.617
+fog$        0.502    0.512    0.501    0.464    0.421    0.387    0.383
+casemgt$    0.000    0.000    0.000    0.000    0.000    0.000    0.000
+larv$       0.000    0.000    0.000    0.000    0.000    0.000    0.000
+surveyd     0.245    0.366    0.502    0.671    0.844    0.978    1.000
+  H4_Greedy_Oracle
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+fog$        1.000    1.000    1.000    1.000    1.000    1.000    1.000
+casemgt$    0.000    0.000    0.000    0.000    0.000    0.000    0.000
+larv$       0.000    0.000    0.000    0.000    0.000    0.000    0.000
+surveyd     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+  H5_MyopicLP_Belief
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.445    0.443    0.453    0.477    0.497    0.497    0.497
+fog$        0.555    0.557    0.547    0.523    0.503    0.503    0.503
+casemgt$    0.000    0.000    0.000    0.000    0.000    0.000    0.000
+larv$       0.000    0.000    0.000    0.000    0.000    0.000    0.000
+surveyd     0.349    0.526    0.714    0.899    0.998    1.000    1.000
+  H5_MyopicLP_Oracle
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+fog$        1.000    1.000    1.000    1.000    1.000    1.000    1.000
+casemgt$    0.000    0.000    0.000    0.000    0.000    0.000    0.000
+larv$       0.000    0.000    0.000    0.000    0.000    0.000    0.000
+surveyd     0.000    0.000    0.000    0.000    0.000    0.000    0.000
+  RL_Agent
+               x1     x1.5       x2     x2.5       x3     x3.5       x4
+survey$     0.230    0.220    0.222    0.223    0.222    0.223    0.223
+fog$        0.656    0.642    0.616    0.601    0.619    0.645    0.664
+casemgt$    0.042    0.027    0.020    0.016    0.015    0.014    0.014
+larv$       0.072    0.110    0.143    0.160    0.144    0.118    0.099
+surveyd     0.187    0.268    0.360    0.441    0.467    0.467    0.467
+
+2c. BUDGET UTILISATION  (spent / season budget; >1.0 would abort)
+policy                        x1.0      x1.5      x2.0      x2.5      x3.0      x3.5      x4.0
+----------------------------------------------------------------------------------------------------
+H0_Do_Nothing                0.000     0.000     0.000     0.000     0.000     0.000     0.000
+H1_Blanket_Fogging           1.000     1.000     1.000     0.886     0.739     0.633     0.554
+H2_Test_and_Target           0.999     0.971     0.832     0.667     0.556     0.477     0.417
+H3_Random_Larviciding        1.000     1.000     1.000     1.000     0.903     0.774     0.677
+H4_Greedy_Belief             1.000     1.000     0.992     0.975     0.928     0.850     0.749
+H4_Greedy_Oracle             1.000     1.000     1.000     1.000     1.000     1.000     1.000
+H5_MyopicLP_Belief           1.000     1.000     0.992     0.953     0.839     0.720     0.630
+H5_MyopicLP_Oracle           0.953     0.848     0.655     0.524     0.437     0.374     0.328
+RL_Agent                     1.000     1.000     1.000     0.980     0.871     0.744     0.650
+----------------------------------------------------------------------------------------------------
+
+========================================================================
+3. BUDGET THRESHOLD FOR CONTROL, BY POLICY
+========================================================================
+  H0_Do_Nothing            not controlled within x4.0
+  H1_Blanket_Fogging       not controlled within x4.0
+  H2_Test_and_Target       not controlled within x4.0
+  H3_Random_Larviciding    not controlled within x4.0
+  H4_Greedy_Belief         not controlled within x4.0
+  H4_Greedy_Oracle         not controlled within x4.0  [oracle: upper bound, not a fair competitor]
+  H5_MyopicLP_Belief       not controlled within x4.0
+  H5_MyopicLP_Oracle       not controlled within x4.0  [oracle: upper bound, not a fair competitor]
+  RL_Agent                 not controlled within x4.0
+
+========================================================================
+4. VALUE OF INFORMATION  (oracle vs belief, same allocation logic)
+========================================================================
+  Greedy     oracle xNone / belief xNone (one side uncontrolled)
+  Myopic LP  oracle xNone / belief xNone (one side uncontrolled)
+
+  Knowing WHERE infection is is worth a sizeable multiple of the entire
+  intervention budget -- surveillance capacity is a first-order lever.
+
+========================================================================
+5. MYOPIC LP vs GREEDY  (positioning vs Long et al. 2018)
+========================================================================
+  Long et al. (Ebola): Myopic LP averted 86-96% vs greedy's 72-85%
+  -- one-period lookahead won decisively there. On dengue:
+
+   budget   Greedy_Or       LP_Or   Greedy_Bel       LP_Bel
+      1.0      45,649       7,354       41,687       34,951
+      1.5       7,518       7,354        9,052        7,330
+      2.0       6,995       7,354        7,174        7,330
+      2.5       6,995       7,354        7,174        7,330
+      3.0       6,995       7,354        7,174        7,330
+      3.5       6,995       7,354        7,174        7,330
+      4.0       6,995       7,354        7,174        7,330
+
+  thresholds:  greedy oracle xNone vs LP oracle xNone  |  greedy belief xNone vs LP belief xNone
+  If LP ~= greedy, one-period optimization adds little on dengue -- the
+  reversal our structural analysis predicts (Thm 1 + weak coupling).
+
+========================================================================
+6. FAIR RANKING  (information-limited policies only)
+========================================================================
+  policy                    controls at   peak @2.5x
+  H2_Test_and_Target              >x4.0        5,913
+  RL_Agent                        >x4.0        6,787
+  H4_Greedy_Belief                >x4.0        7,174
+  H1_Blanket_Fogging              >x4.0        7,182
+  H5_MyopicLP_Belief              >x4.0        7,330
+  H3_Random_Larviciding           >x4.0       17,627
+  H0_Do_Nothing                   >x4.0      256,801
+
+  Oracle variants are excluded here: they observe the true state for free
+  and are reported only as upper bounds / value-of-information references.
+
+================================================================================================
+6b. RELATIVE GAIN OF THE BEST POLICY  (% reduction in peak infection vs each rival)
+    positive = best policy is better by that %;  computed per budget
+================================================================================================
+vs policy                      x1.0       x1.5       x2.0       x2.5       x3.0       x3.5       x4.0
+------------------------------------------------------------------------------------------------
+H0_Do_Nothing                 97.7%      97.7%      97.7%      97.7%      97.7%      97.7%      97.7%
+H1_Blanket_Fogging            31.1%      17.7%      17.7%      17.7%      17.7%      17.7%      17.7%
+H2_Test_and_Target             BEST       BEST       BEST       BEST       BEST       BEST       BEST
+H3_Random_Larviciding         94.6%      82.4%      66.5%      66.5%      66.5%      66.5%      66.5%
+H4_Greedy_Belief              85.8%      34.7%      17.6%      17.6%      17.6%      17.6%      17.6%
+H5_MyopicLP_Belief            83.1%      19.3%      19.3%      19.3%      19.3%      19.3%      19.3%
+RL_Agent                      17.6%      12.9%      12.9%      12.9%      12.9%      12.9%      12.9%
+------------------------------------------------------------------------------------------------
+  best policy by budget: x1.0=H2_Test_and_Target, x1.5=H2_Test_and_Target, x2.0=H2_Test_and_Target, x2.5=H2_Test_and_Target, x3.0=H2_Test_and_Target, x3.5=H2_Test_and_Target, x4.0=H2_Test_and_Target
+
+  NOTE: a policy can be 'BEST' at one budget and mid-pack at another.
+  Report the budget alongside any headline gain -- an unqualified
+  '<policy> is X% better' is not supportable from this table.
+
+========================================================================================
+OBSERVATION-SIGNAL DIAGNOSTIC  (at x2.5 budget)
+  Can the agent SEE infection? (ceiling on any targeting it could learn)
+========================================================================================
+  signal                    cross_ward_std    corr_with_true_I
+  ------------------------------------------------------------
+  obs[1] believed_I                 0.2071               0.692
+  obs[3] mosq_abund                 0.1143              -0.227
+  obs[14] lambda_hat                0.7859              -0.079
+  ------------------------------------------------------------
+  mean |belief_I - true_I| / total_true_I : 0.678
+
+  INTERPRETATION:
+   + SIGNAL PRESENT: obs[1] corr=0.692. The agent CAN see infection.
+     If its ACTIONS still don't correlate with infection (see next table),
+     that is a LEARNING failure -> curriculum / reward / exploration.
+
+========================================================================================
+RL ACTION-CONCENTRATION DIAGNOSTIC  (at x2.5 budget)
+  Is the agent TARGETING wards, or spraying near-uniformly?
+  uniform-spray reference: top10_share ~ 0.077, CoV ~ 0, corr_with_I ~ 0
+========================================================================================
+  channel         cross_ward_std       CoV   top10_share   corr_with_I
+  ------------------------------------------------------------------
+  survey                  0.1951     1.194         0.378         0.183
+  case_mgmt               0.2173    24.186         0.290         0.054
+  fogging                 0.1927     0.821         0.227         0.237
+  larviciding             0.0653     0.230         0.253         0.057
+  ------------------------------------------------------------------
+
+  INTERPRETATION:
+   + GENUINE TARGETING on: fogging
+     These channels concentrate budget on high-infection wards.
+
+  (Compare against policy.py's documented collapse: per-ward std ~0.0001,
+   intent CoV ~0.001. If you see that here, the actor collapsed again.)
+
+Saved consolidated results -> evaluation_dengue\master_results.json
+
+========================================================================
+7. HEADLINE ECONOMIC TABLE
+========================================================================
+  python src/evaluate_dengue.py --trials 20 --model rl_models\test\DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S0_1786150456\final_model_4014k.zip
+  (Monte-Carlo lives/cases/economic loss by scenario; kept separate as it
+   is not a budget sweep.)
+
+Saved aggregate CSV (455 rows) -> evaluation_dengue\master_results.csv
+Saved per-episode CSV (6300 rows) -> evaluation_dengue\master_results_episodes.csv
+   -> bootstrap CIs for every table are computed from THIS file.
+Saved provenance -> evaluation_dengue\master_results.meta.json

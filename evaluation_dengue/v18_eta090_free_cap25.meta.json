@@ -1,0 +1,80 @@
+{
+  "script": "run_all_evals.py",
+  "script_version": "1.9",
+  "run_utc": "2026-09-13T18:47:22Z",
+  "git_commit": "afa3db7",
+  "python": "3.11.9",
+  "argv": [
+    "src\\run_all_evals.py",
+    "--all",
+    "--version_tag",
+    "V18",
+    "--lambda_sigma",
+    "0.8",
+    "--gamma",
+    "0.99",
+    "--free-heuristics",
+    "--survey-share",
+    "0.25",
+    "--eta-F",
+    "0.90",
+    "--csv",
+    "evaluation_dengue/v18_eta090_free_cap25.csv"
+  ],
+  "resolved": {
+    "survey_share": 0.25,
+    "rho": 0.2,
+    "regime": "estimated",
+    "history": 5,
+    "lambda_sigma": 0.8,
+    "gamma": 0.99,
+    "free_heuristics": true,
+    "strict_budget": true,
+    "horizon": 20,
+    "budget_multiples": [
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0
+    ],
+    "archetype": "Dengue_Dhaka_Advanced",
+    "econ": "DNCC_Seasonal_Budget",
+    "control_threshold": 5000,
+    "eta_F_override": 0.9
+  },
+  "configs": [
+    {
+      "name": "dncc10",
+      "graph": "data/dncc10_graph.json",
+      "econ": "DNCC10_Seasonal_Budget",
+      "base_budget": 96115770.0,
+      "n_wards": 10,
+      "kappa_at_1x": null,
+      "checkpoints": {
+        "S0": "rl_models\\test\\DENGUE_DHAKA_V18_dncc10_graph_estimated_rho020_S0_1786150883\\final_model_4014k.zip",
+        "S1": "rl_models\\test\\DENGUE_DHAKA_V18_dncc10_graph_estimated_rho020_S1_1786150894\\final_model_4014k.zip",
+        "S2": "rl_models\\test\\DENGUE_DHAKA_V18_dncc10_graph_estimated_rho020_S2_1786150869\\final_model_4014k.zip",
+        "S3": "rl_models\\test\\DENGUE_DHAKA_V18_dncc10_graph_estimated_rho020_S3_1786151245\\final_model_4014k.zip"
+      }
+    },
+    {
+      "name": "dncc",
+      "graph": "data/dncc_graph.json",
+      "econ": "DNCC_Seasonal_Budget",
+      "base_budget": 480769236.0,
+      "n_wards": 54,
+      "kappa_at_1x": 0.45123567115809576,
+      "checkpoints": {
+        "S0": "rl_models\\test\\DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S0_1786150456\\final_model_4014k.zip",
+        "S1": "rl_models\\test\\DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S1_1786150469\\final_model_4014k.zip",
+        "S2": "rl_models\\test\\DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S2_1786150472\\final_model_4014k.zip",
+        "S3": "rl_models\\test\\DENGUE_DHAKA_V18_dncc_graph_estimated_rho020_S3_1786150484\\final_model_4014k.zip"
+      }
+    }
+  ],
+  "csv": "v18_eta090_free_cap25.csv",
+  "episodes_csv": "v18_eta090_free_cap25_episodes.csv"
+}

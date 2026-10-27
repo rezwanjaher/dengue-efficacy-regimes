@@ -1,0 +1,164 @@
+corporation,thana,ward,ward_thana_pop,is_part
+DNCC,Adabor,Ward No-30,197270,False
+DNCC,Adabor,Ward No-33,17976,True
+DNCC,Badda,Ward No-21,89189,False
+DNCC,Badda,Ward No-37,118590,False
+DNCC,Badda,Ward No-38,109542,False
+DNCC,Badda,Ward No-41,38609,False
+DNCC,Badda,Ward No-42,19674,False
+DNCC,Banani,Ward No-19,86046,True
+DNCC,Banani,Ward No-20,98430,True
+DNCC,Bhasantek,Ward No-15,117971,True
+DNCC,Bhatara,Ward No-17,139938,True
+DNCC,Bhatara,Ward No-39,74320,False
+DNCC,Bhatara,Ward No-40,110046,False
+DNCC,Biman Bandar,Ward No-1,2091,True
+DNCC,Biman Bandar,Ward No-50,5333,True
+DNCC,Cantonment,Ward No-15,64231,True
+DNCC,Cantonment,Ward No-98,71554,False
+DNCC,Dakshinkhan,Ward No-47,94607,False
+DNCC,Dakshinkhan,Ward No-48,75880,True
+DNCC,Dakshinkhan,Ward No-49,107370,False
+DNCC,Dakshinkhan,Ward No-50,119085,True
+DNCC,Darus Salam,Ward No-9,76445,False
+DNCC,Darus Salam,Ward No-10,92961,False
+DNCC,Darus Salam,Ward No-12,41890,True
+DNCC,Dhanmondi,Ward No-34,26790,True
+DNCC,Gulshan,Ward No-18,63097,False
+DNCC,Gulshan,Ward No-19,35260,True
+DNCC,Gulshan,Ward No-20,11859,True
+DNCC,Hatirjheel,Ward No-22,79974,True
+DNCC,Kafrul,Ward No-4,95092,False
+DNCC,Kafrul,Ward No-14,100387,True
+DNCC,Kafrul,Ward No-16,144310,False
+DNCC,Khilkhet,Ward No-17,142761,True
+DNCC,Khilkhet,Ward No-43,19337,False
+DNCC,Khilkhet,Ward No-48,14331,True
+DNCC,Mirpur,Ward No-7,68103,True
+DNCC,Mirpur,Ward No-11,114885,False
+DNCC,Mirpur,Ward No-12,93518,True
+DNCC,Mirpur,Ward No-13,173330,False
+DNCC,Mirpur,Ward No-14,96376,True
+DNCC,Mohammadpur,Ward No-29,57416,False
+DNCC,Mohammadpur,Ward No-31,49049,False
+DNCC,Mohammadpur,Ward No-32,73267,False
+DNCC,Mohammadpur,Ward No-33,248882,True
+DNCC,Mohammadpur,Ward No-34,99175,True
+DNCC,Pallabi,Ward No-2,213061,False
+DNCC,Pallabi,Ward No-3,104231,False
+DNCC,Pallabi,Ward No-5,133707,False
+DNCC,Pallabi,Ward No-6,106041,True
+DNCC,Pallabi,Ward No-15,40552,True
+DNCC,Ramna,Ward No-35,79726,False
+DNCC,Ramna,Ward No-36,63972,False
+DNCC,Rampura,Ward No-22,91461,True
+DNCC,Rampura,Ward No-23,69353,False
+DNCC,Rupnagar,Ward No-6,122322,True
+DNCC,Rupnagar,Ward No-7,55708,True
+DNCC,Shah Ali,Ward No-7,6564,True
+DNCC,Shah Ali,Ward No-8,145196,False
+DNCC,Sher-e-Bangla Nagar,Ward No-27,77737,False
+DNCC,Sher-e-Bangla Nagar,Ward No-28,64906,False
+DNCC,Tejgaon,Ward No-25,57809,True
+DNCC,Tejgaon,Ward No-26,65351,False
+DNCC,Tejgaon Shilpa Elaka,Ward No-20,4456,True
+DNCC,Tejgaon Shilpa Elaka,Ward No-24,70245,False
+DNCC,Tejgaon Shilpa Elaka,Ward No-25,33960,True
+DNCC,Turag,Ward No-52,92327,False
+DNCC,Turag,Ward No-53,103614,False
+DNCC,Turag,Ward No-54,70123,False
+DNCC,Uttara Paschim,Ward No-1,82028,True
+DNCC,Uttara Paschim,Ward No-51,98482,False
+DNCC,Uttara Purba,Ward No-1,35395,True
+DNCC,Uttar Khan,Ward No-44,31861,False
+DNCC,Uttar Khan,Ward No-45,50260,False
+DNCC,Uttar Khan,Ward No-46,44028,False
+DSCC,Bangshal,Ward No-27,1262,True
+DSCC,Bangshal,Ward No-30,2624,True
+DSCC,Bangshal,Ward No-31,14110,True
+DSCC,Bangshal,Ward No-32,23146,True
+DSCC,Bangshal,Ward No-33,64566,False
+DSCC,Bangshal,Ward No-34,44878,False
+DSCC,Bangshal,Ward No-35,25440,False
+DSCC,Chawkbazar,Ward No-27,28310,True
+DSCC,Chawkbazar,Ward No-28,20291,False
+DSCC,Chawkbazar,Ward No-29,55010,False
+DSCC,Chawkbazar,Ward No-30,13297,True
+DSCC,Chawkbazar,Ward No-31,6145,True
+DSCC,Demra,Ward No-64,32601,True
+DSCC,Demra,Ward No-65,25112,True
+DSCC,Demra,Ward No-66,74876,False
+DSCC,Demra,Ward No-67,55335,False
+DSCC,Demra,Ward No-68,48338,False
+DSCC,Demra,Ward No-69,20157,False
+DSCC,Demra,Ward No-70,22417,False
+DSCC,Dhanmondi,Ward No-15,75150,False
+DSCC,Gendaria,Ward No-40,34984,True
+DSCC,Gendaria,Ward No-44,9170,True
+DSCC,Gendaria,Ward No-45,52639,False
+DSCC,Gendaria,Ward No-46,43514,False
+DSCC,Hazaribagh,Ward No-14,107232,False
+DSCC,Hazaribagh,Ward No-22,93244,False
+DSCC,Jatrabari,Ward No-40,8712,True
+DSCC,Jatrabari,Ward No-48,63032,False
+DSCC,Jatrabari,Ward No-49,61293,False
+DSCC,Jatrabari,Ward No-50,52976,False
+DSCC,Jatrabari,Ward No-61,44075,True
+DSCC,Jatrabari,Ward No-62,96853,False
+DSCC,Jatrabari,Ward No-63,81433,False
+DSCC,Jatrabari,Ward No-64,24631,True
+DSCC,Jatrabari,Ward No-65,59175,True
+DSCC,Kadamtali,Ward No-52,41955,False
+DSCC,Kadamtali,Ward No-53,65764,False
+DSCC,Kadamtali,Ward No-58,69613,False
+DSCC,Kadamtali,Ward No-59,57417,False
+DSCC,Kadamtali,Ward No-60,108824,False
+DSCC,Kadamtali,Ward No-61,45010,True
+DSCC,Kadamtali,Ward No-65,35634,True
+DSCC,Kalabagan,Ward No-16,77098,False
+DSCC,Kalabagan,Ward No-17,37160,True
+DSCC,Kamrangirchar,Ward No-55,144017,False
+DSCC,Kamrangirchar,Ward No-56,138848,False
+DSCC,Kamrangirchar,Ward No-57,89437,False
+DSCC,Khilgaon,Ward No-1,70477,False
+DSCC,Khilgaon,Ward No-2,105460,False
+DSCC,Khilgaon,Ward No-3,161609,False
+DSCC,Khilgaon,Ward No-74,9001,True
+DSCC,Khilgaon,Ward No-75,34200,False
+DSCC,Kotwali,Ward No-32,9161,True
+DSCC,Kotwali,Ward No-36,25734,False
+DSCC,Kotwali,Ward No-37,14190,False
+DSCC,Lalbagh,Ward No-23,47010,False
+DSCC,Lalbagh,Ward No-24,64277,False
+DSCC,Lalbagh,Ward No-25,31420,False
+DSCC,Lalbagh,Ward No-26,43318,False
+DSCC,Motijheel,Ward No-8,32863,False
+DSCC,Motijheel,Ward No-9,30296,False
+DSCC,Motijheel,Ward No-10,20429,False
+DSCC,Mugda,Ward No-6,72195,False
+DSCC,Mugda,Ward No-7,56424,False
+DSCC,Mugda,Ward No-71,52781,False
+DSCC,Mugda,Ward No-72,27574,False
+DSCC,New Market,Ward No-18,54220,False
+DSCC,Paltan,Ward No-13,52585,False
+DSCC,Paltan,Ward No-19,1241,True
+DSCC,Paltan,Ward No-20,88,True
+DSCC,Ramna,Ward No-19,56759,True
+DSCC,Sabujbagh,Ward No-4,87903,False
+DSCC,Sabujbagh,Ward No-5,69389,False
+DSCC,Sabujbagh,Ward No-73,46137,False
+DSCC,Sabujbagh,Ward No-74,55089,True
+DSCC,Shahbagh,Ward No-20,28547,True
+DSCC,Shahbagh,Ward No-21,35218,False
+DSCC,Shahjahanpur,Ward No-11,55659,False
+DSCC,Shahjahanpur,Ward No-12,56118,False
+DSCC,Sher-e-Bangla Nagar,Ward No-17,17033,True
+DSCC,Shyampur,Ward No-47,44551,False
+DSCC,Shyampur,Ward No-51,70701,False
+DSCC,Shyampur,Ward No-54,58553,False
+DSCC,Sutrapur,Ward No-42,29684,False
+DSCC,Sutrapur,Ward No-43,37548,False
+DSCC,Sutrapur,Ward No-44,17801,True
+DSCC,Wari,Ward No-38,36259,False
+DSCC,Wari,Ward No-39,44386,False
+DSCC,Wari,Ward No-41,44370,False

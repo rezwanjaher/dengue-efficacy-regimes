@@ -1,0 +1,285 @@
+{
+  "schema_version": 20.0,
+  "archetype_groups": {
+    "Urban Public Health": {
+      "Dengue_Dhaka_Base": {
+        "description": "Profile for curriculum stages 1 and 2. Biology and economics are identical to Dengue_Dhaka_Advanced.",
+        "host_unit_name": "Human",
+        "vector_unit_name": "Aedes Mosquito",
+        "timestep_unit": "week",
+        "economic_scenarios": {
+          "DNCC_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 8903134,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "DNCC10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9611577,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "Balanced_Medium_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 8903134,
+            "initial_infestation_profile": "MEDIUM",
+            "_note": "alias of DNCC_Seasonal_Budget; the tutorial stages default to this name"
+          },
+          "CONTIGUOUS10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9611577,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "RANDOM10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 8437929,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "DISPERSED10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 10187541,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "CONTIGUOUS20_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9084683,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "RANDOM20_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9134879,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "DISPERSED20_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 10592265,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "CONTIGUOUS30_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 8753736,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "RANDOM30_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9011319,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "DISPERSED30_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 10051470,
+            "initial_infestation_profile": "MEDIUM"
+          }
+        },
+        "biological_facts": {
+          "dynamics_substeps": 7,
+          "human_model": {
+            "num_states": 3,
+            "state_names": [
+              "Susceptible",
+              "Infected",
+              "Recovered"
+            ],
+            "recovery_rate": 1.4
+          },
+          "mosquito_model": {
+            "carrying_capacity_multiplier": 5.5,
+            "mosquito_birth_rate": 1.75,
+            "biting_rate_per_week": 3.25,
+            "transmission_prob_human_to_mosquito": 0.4,
+            "transmission_prob_mosquito_to_human": 0.475,
+            "extrinsic_incubation_rate": 0.933,
+            "mosquito_mortality_rate": 0.816
+          },
+          "spatial_spread": {
+            "human_mobility_network_rate": 0.15,
+            "mosquito_dispersal_rate": 0.02
+          },
+          "seasonality": {
+            "forcing_type": "sinusoidal",
+            "peak_week": 28,
+            "amplitude": 0.75,
+            "baseline": 0.2
+          },
+          "action_semantics": {
+            "survey": {
+              "cost": 5,
+              "efficacy": 0.72
+            },
+            "case_management": {
+              "cost": 6076,
+              "efficacy": 0.5
+            },
+            "vector_control": {
+              "cost": 9,
+              "efficacy": 0.62
+            },
+            "larviciding": {
+              "cost": 11,
+              "efficacy": 0.65
+            }
+          }
+        }
+      },
+      "Dengue_Dhaka_Advanced": {
+        "description": "Profile for curriculum stage 3 and every evaluation.",
+        "host_unit_name": "Human",
+        "vector_unit_name": "Aedes Mosquito",
+        "timestep_unit": "week",
+        "economic_scenarios": {
+          "DNCC_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 8903134,
+            "initial_infestation_profile": "MEDIUM",
+            "_note": "54 wards x 8,903,134 = 480,769,236 BDT/season. Pop 5,919,169, i.e. 81.2 BDT/person."
+          },
+          "DNCC10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9611577,
+            "initial_infestation_profile": "MEDIUM",
+            "_note": "10 wards x 9,611,577 = 96,115,770 BDT/season. Pop 1,183,365, per-capita matched to DNCC at 81.2 BDT/person."
+          },
+          "CONTIGUOUS10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9611577,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "RANDOM10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 8437929,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "DISPERSED10_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 10187541,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "CONTIGUOUS20_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9084683,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "RANDOM20_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9134879,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "DISPERSED20_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 10592265,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "CONTIGUOUS30_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 8753736,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "RANDOM30_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 9011319,
+            "initial_infestation_profile": "MEDIUM"
+          },
+          "DISPERSED30_Seasonal_Budget": {
+            "alpha_benefit": 25000,
+            "delta_penalty_human_I": 10000,
+            "total_episode_budget_per_site": 10051470,
+            "initial_infestation_profile": "MEDIUM"
+          }
+        },
+        "biological_facts": {
+          "dynamics_substeps": 7,
+          "human_model": {
+            "num_states": 3,
+            "state_names": [
+              "Susceptible",
+              "Infected",
+              "Recovered"
+            ],
+            "recovery_rate": 1.4
+          },
+          "mosquito_model": {
+            "carrying_capacity_multiplier": 5.5,
+            "mosquito_birth_rate": 1.75,
+            "biting_rate_per_week": 3.25,
+            "transmission_prob_human_to_mosquito": 0.4,
+            "transmission_prob_mosquito_to_human": 0.475,
+            "extrinsic_incubation_rate": 0.933,
+            "mosquito_mortality_rate": 0.816
+          },
+          "spatial_spread": {
+            "human_mobility_network_rate": 0.15,
+            "mosquito_dispersal_rate": 0.02
+          },
+          "seasonality": {
+            "forcing_type": "sinusoidal",
+            "peak_week": 28,
+            "amplitude": 0.75,
+            "baseline": 0.2
+          },
+          "action_semantics": {
+            "survey": {
+              "cost": 5,
+              "efficacy": 0.72
+            },
+            "case_management": {
+              "cost": 6076,
+              "efficacy": 0.5
+            },
+            "vector_control": {
+              "cost": 9,
+              "efficacy": 0.62
+            },
+            "larviciding": {
+              "cost": 11,
+              "efficacy": 0.65
+            }
+          }
+        },
+        "_calibration": {
+          "_provenance_classes": "M measured, D derived, C calibrated, A adopted from the literature, P posited.",
+          "dynamics_substeps": "7 daily sub-steps per weekly decision. A numerical setting: the generation interval is about 16 days (Liu et al. 2020), too short for weekly steps.",
+          "recovery_rate": "1.4 per week, a 5-day infectious period after symptom onset. Class A. Duong et al. 2015; Nguyet et al. 2013.",
+          "extrinsic_incubation_rate": "0.933 per week, a 7.5-day extrinsic incubation period. Class A. Slightly shorter than the 7.7 to 9.9 days the fitted means of Chan and Johansson 2012 give at 28 to 29 C.",
+          "mosquito_mortality_rate": "0.816 per week, from daily survival 0.89 (mu = -7 ln 0.89); mean lifespan 8.6 days. Class A. Garcia et al. 2016; Maciel-de-Freitas et al. 2007; Brady et al. 2013.",
+          "carrying_capacity_multiplier": "5.5. Class C. Fitted with src/calibrate_k.py so the untreated growth rate, 0.173 per week, lies in the DGHS take-off band of 0.154 to 0.185; every value from 4.5 to 6.0 fits.",
+          "mosquito_birth_rate": "1.75 per week. Class C, set with K: the take-off data fix K(1 - mu/b), not either alone.",
+          "biting_rate_per_week": "3.25 per week, 0.46 bites per mosquito per day. Class A. Inside the field estimates of 0.35 to 0.76 reviewed by Zahid et al. 2023.",
+          "transmission_probabilities": "Human to mosquito 0.40, class A, inferred from direct feeding on infected people (Duong et al. 2015; Nguyet et al. 2013). Mosquito to human 0.475, class P.",
+          "seasonality": "Sinusoidal, peak week 28, baseline 0.2, amplitude 0.75. Class P.",
+          "spatial_spread": "Human coupling 0.15, vector coupling 0.02: each ward mixes (1 - rho) of its own pressure with rho of its neighbours' mean. Class P.",
+          "total_episode_budget_per_site": "Season budget divided by wards. DNCC FY2025-26 insecticide (Tk 80 cr) and outsourced operations (Tk 45 cr) lines, times 20/52. Class M for the lines, D for the season budget.",
+          "delta_penalty_human_I": "10,000 BDT per infection = 0.25 symptomatic share (Bhatt et al. 2013) x 39,893 BDT societal cost per episode (Sarker et al. 2023). Class D.",
+          "case_management_cost": "6,076 BDT, public-hospital provider cost per patient (Sarker et al. 2023), charged per infected person per week. Class M.",
+          "vector_control_cost": "9 BDT per person per weekly round: Tk 80 cr / 5,919,169 residents / 52 weeks = 2.6, divided by an assumed 30% of residents reached per round. Class P.",
+          "larviciding_cost": "11 BDT per person per week: US$0.20 per person covered per campaign (Suaya et al. 2007, 2005 prices), 26 BDT in 2023, over the 2.4-week median field residual (Garelli et al. 2011). Class P.",
+          "survey_cost": "5 BDT per person per week. Class P; no Bangladeshi source. The paper reports results across this price.",
+          "efficacies": "Adulticide 0.62 at reference, swept 0.10 to 0.90; larviciding 0.65, class A; surveillance detection 0.72 and case management 0.50, class P.",
+          "alpha_benefit": "Enters one observation feature only; not used in the reward, the dynamics or the costs.",
+          "lambda_sigma": "0.8, passed on the command line; the top 20% of wards then carry 49.2% of risk on 54 wards. Class P.",
+          "population": "BBS Population and Housing Census 2022: 5,919,169 on 54 wards, 1,183,365 on 10. Class M."
+        }
+      }
+    }
+  }
+}

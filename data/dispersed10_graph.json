@@ -1,0 +1,71 @@
+{
+  "num_sites": 10,
+  "ward_names": [
+    "DNCC_Ward No-1",
+    "DNCC_Ward No-10",
+    "DNCC_Ward No-11",
+    "DNCC_Ward No-12",
+    "DNCC_Ward No-14",
+    "DNCC_Ward No-17",
+    "DNCC_Ward No-19",
+    "DNCC_Ward No-23",
+    "DNCC_Ward No-29",
+    "DNCC_Ward No-36"
+  ],
+  "N_initial": [
+    119514,
+    92961,
+    114885,
+    135408,
+    196763,
+    282699,
+    121306,
+    69353,
+    57416,
+    63972
+  ],
+  "neighbors": {
+    "0": [],
+    "1": [
+      2,
+      3
+    ],
+    "2": [
+      1,
+      3,
+      4
+    ],
+    "3": [
+      1,
+      2,
+      4
+    ],
+    "4": [
+      2,
+      3
+    ],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": []
+  },
+  "_provenance": {
+    "population": "BBS Population & Housing Census 2022 (ward x thana crosswalk)",
+    "adjacency": "inherited from dncc_graph.json; closed-boundary subgraph",
+    "subgraph": "dispersed10: 10-ward selection from dncc_graph.json",
+    "wards": [
+      1,
+      10,
+      11,
+      12,
+      14,
+      17,
+      19,
+      23,
+      29,
+      36
+    ],
+    "built_by": "t/make_instances.py"
+  }
+}
