@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Policy-free experiments on one instance: delay ratios, the pre-specified
-timing test and the channel comparison.
+"""Policy-free experiments on one instance: delay ratios, the delay
+shape under constant forcing and the channel comparison.
 
     python src/exp_all.py delay    --dncc
     python src/exp_all.py delay    --dncc --seasonal
@@ -11,7 +11,9 @@ Use --dncc10 for the 10-ward instance.
 
 Options:
     mode              Experiment to run. One of: selfcheck, delay, prereg,
-                      channels, efficacy.
+                      channels, efficacy. prereg runs the delay shape under
+                      constant forcing; the old name is kept so that output
+                      file names still match.
     --dncc            54-ward instance only.
     --dncc10          10-ward instance only.
     --archetype_file  Parameter file.
@@ -202,11 +204,11 @@ def mode_prereg(env, args, name, cfg):
     tau = (H - T) + (r1 / r0) * T
 
     print("=" * 84)
-    print("PRE-REGISTERED PREDICTION  (computed before the model is stepped)")
+    print("DELAY SHAPE UNDER CONSTANT FORCING  (linearised-model values from the parameters)")
     print("=" * 84)
     print(f"  constant forcing s = {args.season}, campaign {T} wk, horizon {H}")
     print(f"  R0 = {R0:.4f}   r0 = {r0:+.4f}/wk   r1 = {r1:+.4f}/wk")
-    print(f"  fitting window: start weeks {args.fit_start}-{args.fit_end}, FIXED IN ADVANCE")
+    print(f"  fitting window: start weeks {args.fit_start}-{args.fit_end}, set by --fit-start and --fit-end")
     print(f"  P1 slope = r0 = {r0:.4f}/wk     P2 two regimes beat one     P3 break at {tau:.1f} wk")
     print("=" * 84)
 
@@ -241,7 +243,7 @@ def mode_prereg(env, args, name, cfg):
     r2_lin = np.corrcoef(xf, yf)[0, 1]**2
     r2_two = 1 - best[0] / np.sum((yf - yf.mean())**2)
 
-    print("\n  VERDICT")
+    print("\n  COMPARISON WITH THE LINEARISED MODEL")
     print(f"    P1 slope {slope:+.4f} vs {r0:+.4f}   "
           f"{'MATCH' if abs(slope-r0) < 0.35*abs(r0) else 'MISS'}")
     print(f"    P2 R2 {r2_lin:.3f} -> {r2_two:.3f}   "

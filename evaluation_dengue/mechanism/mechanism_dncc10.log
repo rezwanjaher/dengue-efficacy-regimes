@@ -1,0 +1,43 @@
+mechanism_check  dncc10  2026-11-13T15:24:44Z
+  md5 927c2e49864cc7a664f3bde512768c40  src/exp_all.py
+  md5 cf4186eae20e6a457828cd682e9da59c  src/coverage_threshold.py
+  md5 110dcf713b7374eec224e6d8ce89fb8c  src/env/smip_env.py
+  md5 acb0489c6a8b2a3d0eee89dc6b13e697  src/env/physics.py
+  md5 1e40b519c5a5f9351918e9bb72cf6bb2  configs/archetypes.json
+
+self-check against exp_all.run_traj (2 seeds, eta 0.54, burst1)
+  seed 0: 9614.4590 vs 9614.4590
+  seed 1: 14267.7920 vs 14267.7920
+  match
+
+  eta   sched       peak  pk_wk  S_end_campaign  S_season_end  I_end_campaign
+ 0.30  burst1     47,912   16.9          0.9511        0.5114           5,302
+ 0.30  burst2     43,047   17.4          0.9268        0.5440           6,151
+ 0.30    sust     38,462   13.3          0.4662        0.4662          15,897
+ 0.40  burst1     36,060   18.7          0.9692        0.6901           1,974
+ 0.40  burst2     30,588   18.7          0.9495        0.7273           2,252
+ 0.40    sust     30,342   13.6          0.5531        0.5531          13,599
+ 0.44  burst1     29,520   18.9          0.9742        0.7689           1,264
+ 0.44  burst2     23,808   18.2          0.9559        0.8021           1,427
+ 0.44    sust     27,188   13.6          0.5881        0.5881          12,426
+ 0.48  burst1     21,963   18.9          0.9784        0.8447             769
+ 0.48  burst2     16,515   15.3          0.9611        0.8680             863
+ 0.48    sust     24,224   13.8          0.6233        0.6233          11,289
+ 0.52  burst1     13,626   16.6          0.9817        0.9068             449
+ 0.52  burst2     10,988    8.6          0.9655        0.9173             490
+ 0.52    sust     21,554   12.8          0.6566        0.6566          10,052
+ 0.56  burst1      7,392   12.4          0.9844        0.9489             250
+ 0.56  burst2      9,266    1.5          0.9690        0.9473             280
+ 0.56    sust     18,943   12.8          0.6904        0.6904           8,746
+ 0.60  burst1      4,536    3.4          0.9866        0.9723             135
+ 0.60  burst2      9,244    1.0          0.9719        0.9638             151
+ 0.60    sust     16,826   11.8          0.7200        0.7200           7,557
+ 0.62  burst1      4,166    1.0          0.9876        0.9790              96
+ 0.62  burst2      9,244    1.0          0.9732        0.9681             112
+ 0.62    sust     15,672   10.0          0.7364        0.7364           6,925
+ 0.75  burst1      3,071    1.0          0.9920        0.9918              10
+ 0.75  burst2      9,244    1.0          0.9794        0.9793              12
+ 0.75    sust     10,843    5.4          0.8208        0.8208           3,519
+
+wrote evaluation_dengue\mechanism\mechanism_dncc10.csv
+source files unchanged: True

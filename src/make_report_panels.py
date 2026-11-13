@@ -603,7 +603,7 @@ PAPER_ONLY = {
     "convergence_dncc": "Objective against training steps by seed, 54 wards.",
     "convergence_dncc10": "Objective against training steps by seed, 10 wards.",
     "delay_ratios": "Realised peak relative to a week-1 start, at identical expenditure.",
-    "prereg": "Pre-registered test of the delay proposition.",
+    "prereg": "Delay shape under constant forcing (not printed in the paper).",
     "sweep_sustained_dncc": "Peak infections against sustained coverage, 54 wards.",
     "sweep_burst_dncc": "Peak infections against campaign length from week 1, 54 wards.",
     "budget_V_dncc": "Objective against budget, 54 wards.",
@@ -676,7 +676,7 @@ def sec_exp_all(d, out):
         panel_legend(ax)
         save_fig("prereg", out,
                  "Log realised peak against start week under constant forcing. "
-                 "Dotted lines mark the breakpoint predicted before the runs.",
+                 "Dotted lines mark the crossover week of the linearised model.",
                  "prereg")
 
     for p in sorted(glob.glob(os.path.join(d, "exp_channels_*.csv"))):

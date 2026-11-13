@@ -1,0 +1,146 @@
+eqstart_check  dncc  occupancy=0.534  2026-11-13T00:04:02Z
+  md5 927c2e49864cc7a664f3bde512768c40  src/exp_all.py
+  md5 cf4186eae20e6a457828cd682e9da59c  src/coverage_threshold.py
+  md5 110dcf713b7374eec224e6d8ce89fb8c  src/env/smip_env.py
+  md5 acb0489c6a8b2a3d0eee89dc6b13e697  src/env/physics.py
+  md5 1e40b519c5a5f9351918e9bb72cf6bb2  configs/archetypes.json
+
+STEP 1  verify: with occupancy 1.0 the wrapper must reproduce the published sweep at eta_F = 0.54
+running self-check first
+
+====================================================================================
+SELF-CHECK: does run_traj reproduce coverage_threshold.run_fixed?
+====================================================================================
+  case                     run_fixed      run_traj   match
+  no intervention          259,188.7     259,188.7     yes
+  sustained u=0.5           12,156.7      12,156.7     yes
+  6-week burst               5,968.7       5,968.7     yes
+  larviciding u=1           21,491.7      21,491.7     yes
+
+  PASS. Trajectory stepping matches the project's own. Experiments below
+  are measuring the same model coverage_threshold.py measures.
+
+================================================================================================
+ADULTICIDE EFFICACY SWEEP   dncc
+  calibrated value 0.62; sweeping [0.54]
+  Dhaka bottle assays: permethrin 0.024-0.238, deltamethrin 0.489-0.943
+  40 seeds, seasonal forcing, 6-week campaign
+  Policy-free: coverage is written into the dynamics, no policy involved.
+================================================================================================
+
+   eta_F  untreated  sustained  burst k*  burst peak  front/sust  1wk delay          95% CI
+    0.54    241,860     44,366         8      14,989       2.96x      0.99x    [0.87, 1.14]
+
+================================================================================================
+DO THE STRUCTURAL CONCLUSIONS SURVIVE?
+================================================================================================
+  S1 front-loading beats sustained at equal spend : 1/1 efficacies
+  S2 one-week delay raises the peak (CI excludes 1) : 0/1 efficacies   fails at eta_F = [0.54]
+  S3 a finite campaign reaches the peak floor      : 1/1 efficacies
+
+  The delay ratio is the quantity the paper leads with. Report its
+  range across the sweep, not only its value at the calibrated point.
+
+wrote evaluation_dengue\eqstart\verify_dncc_occ1.csv
+  wrapper  : fvs=2.9598 delay=0.993 k*=8
+  published: fvs=2.9598 delay=0.993 k*=8
+  match
+
+STEP 2  efficacy sweep with mosquitoes at 0.534 of capacity
+running self-check first
+
+====================================================================================
+SELF-CHECK: does run_traj reproduce coverage_threshold.run_fixed?
+====================================================================================
+  case                     run_fixed      run_traj   match
+  no intervention          242,575.7     242,575.7     yes
+  sustained u=0.5            6,399.7       6,399.7     yes
+  6-week burst               3,764.7       3,764.7     yes
+  larviciding u=1           10,099.7      10,099.7     yes
+
+  PASS. Trajectory stepping matches the project's own. Experiments below
+  are measuring the same model coverage_threshold.py measures.
+
+================================================================================================
+ADULTICIDE EFFICACY SWEEP   dncc
+  calibrated value 0.62; sweeping [0.1, 0.2, 0.3, 0.4, 0.42, 0.44, 0.46, 0.48, 0.5, 0.52, 0.54, 0.56, 0.58, 0.6, 0.62, 0.75, 0.9]
+  Dhaka bottle assays: permethrin 0.024-0.238, deltamethrin 0.489-0.943
+  40 seeds, seasonal forcing, 6-week campaign
+  Policy-free: coverage is written into the dynamics, no policy involved.
+================================================================================================
+
+   eta_F  untreated  sustained  burst k*  burst peak  front/sust  1wk delay          95% CI
+    0.10    226,874    182,686        12     199,195       0.92x      0.99x    [0.99, 1.00]
+    0.20    226,874    139,862        12     162,090       0.86x      0.97x    [0.96, 0.98]
+    0.30    226,874    100,200        12     112,883       0.89x      0.94x    [0.93, 0.95]
+    0.40    226,874     66,895        12      56,406       1.19x      0.89x    [0.85, 0.92]
+    0.42    226,874     61,096        11      46,278       1.32x      0.88x    [0.84, 0.93]
+    0.44    226,874     55,558        10      36,434       1.52x      0.90x    [0.86, 0.96]
+    0.46    226,874     50,422        10      27,909       1.81x      0.92x    [0.88, 0.98]
+    0.48    226,874     45,702         9      20,249       2.26x      0.93x    [0.88, 0.99]
+    0.50    226,874     41,194         8      14,398       2.86x      0.98x    [0.92, 1.06]
+    0.52    226,874     37,230         8      10,089       3.69x      1.07x    [0.97, 1.17]
+    0.54    226,874     33,212         8       7,036       4.72x      1.17x    [1.05, 1.31]
+    0.56    226,874     29,768         7       4,717       6.31x      1.43x    [1.31, 1.56]
+    0.58    226,874     26,605         7       3,544       7.51x      1.74x    [1.64, 1.82]
+    0.60    226,874     23,792         7       3,104       7.66x      1.91x    [1.86, 1.96]
+    0.62    226,874     20,972         6       2,949       7.11x      2.00x    [1.94, 2.05]
+    0.75    226,874      9,769         5       2,306       4.24x      2.55x    [2.44, 2.65]
+    0.90    226,874      5,367         3       1,560       3.44x      3.76x    [3.51, 4.02]
+
+================================================================================================
+DO THE STRUCTURAL CONCLUSIONS SURVIVE?
+================================================================================================
+  S1 front-loading beats sustained at equal spend : 14/17 efficacies   fails at eta_F = [0.1, 0.2, 0.3]
+  S2 one-week delay raises the peak (CI excludes 1) : 7/17 efficacies   fails at eta_F = [0.1, 0.2, 0.3, 0.4, 0.42, 0.44, 0.46, 0.48, 0.5, 0.52]
+  S3 a finite campaign reaches the peak floor      : 13/17 efficacies
+
+  The delay ratio is the quantity the paper leads with. Report its
+  range across the sweep, not only its value at the calibrated point.
+
+wrote evaluation_dengue\eqstart\exp_efficacy_dncc_eqstart.csv
+
+STEP 3  seasonal delay sweep at the reference efficacy, same start
+running self-check first
+
+====================================================================================
+SELF-CHECK: does run_traj reproduce coverage_threshold.run_fixed?
+====================================================================================
+  case                     run_fixed      run_traj   match
+  no intervention          242,575.7     242,575.7     yes
+  sustained u=0.5            6,399.7       6,399.7     yes
+  6-week burst               3,764.7       3,764.7     yes
+  larviciding u=1           10,099.7      10,099.7     yes
+
+  PASS. Trajectory stepping matches the project's own. Experiments below
+  are measuring the same model coverage_threshold.py measures.
+
+====================================================================================
+COST OF DELAY   dncc   6-week campaign at coverage 1.0
+  forcing: seasonal (operational)
+  40 seeds, shared across start weeks so ratios can be paired
+  No control threshold enters this calculation.
+====================================================================================
+
+   start    mean peak    ratio     95% CI (paired)
+       1        2,949    1.00x        [1.00, 1.00]
+       2        5,999    2.00x        [1.94, 2.05]
+       3        8,996    2.86x        [2.65, 3.06]
+       4       12,466    3.72x        [3.31, 4.17]
+       5       17,275    4.83x        [4.11, 5.63]
+       6       23,784    6.25x        [5.11, 7.55]
+       7       32,347    8.07x       [6.39, 10.06]
+       8       43,135   10.34x       [7.98, 13.18]
+       9       56,553   13.26x      [10.05, 17.14]
+      10       72,700   16.96x      [12.72, 22.08]
+      11       91,104   21.55x      [16.10, 28.06]
+      12      111,169   26.98x      [20.24, 34.86]
+
+  THE OPERATIONAL CLAIM
+    one week late    x2.00   95% CI [1.94, 2.05]   supported
+    two weeks late   x2.86   95% CI [2.65, 3.06]   supported
+
+wrote evaluation_dengue\eqstart\exp_delay_dncc_seasonal_eqstart.csv
+
+source files unchanged: True
+next: python src/find_crossings.py --glob "evaluation_dengue\eqstart/exp_efficacy_dncc_eqstart.csv"

@@ -21,7 +21,8 @@ python reproduce.py
 ```
 
 This rebuilds the paper's tables and figures from the shipped results in a few
-minutes, without a GPU, and checks each table against the copy the paper uses.
+minutes, without a GPU, and checks each table against the shipped copy in
+`report/tables/`.
 Output goes to `reproduced/`; nothing shipped is changed. It ends with a line
 such as `12 of 12 tables match the paper's copies`.
 
@@ -45,7 +46,14 @@ Tested with Python 3.11.
 
 `RELEASE_MANIFEST.csv` lists every file with its MD5. Comments were removed from
 the scripts for release; the column `code_tree_verified` records that each
-script's code is identical to the version that produced the results.
+script's code is identical to the version that produced the results. The MD5s
+are of the files as checked out on Windows, where text files have CRLF line
+endings; on other systems convert the line endings before comparing.
+
+`report/` also keeps four tables and one figure that the current version of the
+paper no longer prints: `delay_ratios_ec`, `headline_peak_both`,
+`sens_etaS_compact`, `sens_price_cm` and `figures/prereg.pdf`. They summarise
+runs in `evaluation_dengue/`, and `reproduce.py` still rebuilds and checks them.
 
 ## Which script makes which table
 
@@ -100,7 +108,10 @@ python src/exp_all.py prereg   --dncc
 python src/exp_all.py channels --dncc
 ```
 
-Repeat the `exp_all.py` lines with `--dncc10` for the 10-ward instance.
+Repeat the `exp_all.py` lines with `--dncc10` for the 10-ward instance. The
+`prereg` mode runs the delay sweep under constant forcing behind the appendix
+section on the shape of the delay cost; it keeps its old name so that the
+output files still match.
 
 The efficacy sweep on all ten instances, behind the crossings table:
 
@@ -176,7 +187,21 @@ its latest checkpoint. To evaluate new agents, pass
 
 ## Robustness checks
 
-The appendix reports further one-off checks (uneven breeding capacity, isolated
+Three checks added in version 1.1 are shipped with their outputs. None of them
+edits `src/`: each changes the model in memory, prints the MD5s of the source
+files before and after, and refuses to overwrite an existing output (rename
+the output folder first to rerun).
+
+| Check | Command | Output |
+|---|---|---|
+| Mosquitoes start at equilibrium (0.534 of capacity) instead of at capacity: efficacy sweep and seasonal delay sweep | `python src/eqstart_check.py --dncc` (and `--dncc10`) | `evaluation_dengue/eqstart/` |
+| What the efficacy thresholds track: peak timing and susceptible share for two six-week campaigns and sustained coverage, at nine efficacies | `python src/mechanism_check.py --dncc` (and `--dncc10`) | `evaluation_dengue/mechanism/` |
+| Detection sweep with case management charged on all estimated infections, not only detected ones (uses the trained agents) | `python src/cm_all_check.py --eta-f 0.40` (also 0.45 and 0.54) | `evaluation_dengue/sweeps_cm_all/` |
+
+For the equilibrium start, find the crossings with
+`python src/find_crossings.py --glob "evaluation_dengue/eqstart/exp_efficacy_dncc_eqstart.csv"`.
+
+The appendix also reports further one-off checks (uneven breeding capacity, isolated
 wards, joint parameter draws, alternative spatial mixing, numerical scheme,
 prior immunity, seeding) and the correlation of each policy's
 allocation with true ward infection. Their scripts are available from the corresponding
